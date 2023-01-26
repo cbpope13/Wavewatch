@@ -9,7 +9,9 @@ const Home = () => {
 	const [location, setLocation] = useState('');
 
 	const getReport = () => {
-		fetch(`https://wavewatch.vercel.app/api/report?location=${location}`)
+		fetch(
+			`https://wavewatch-px585z7cs-cbpope13.vercel.app/api/report?location=${location}`
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				setReport(data);
