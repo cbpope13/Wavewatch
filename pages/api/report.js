@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+			'X-RapidAPI-Key': '75f0385fabmshd260d8bd0f85097p170a3ejsn534093935ab0',
 			'X-RapidAPI-Host': 'forward-reverse-geocoding.p.rapidapi.com',
 		},
 	};
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 		const options = {
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+				'X-RapidAPI-Key': '75f0385fabmshd260d8bd0f85097p170a3ejsn534093935ab0',
 				'X-RapidAPI-Host': 'stormglass.p.rapidapi.com',
 			},
 		};
