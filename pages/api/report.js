@@ -1,12 +1,9 @@
-require('dotenv').config();
-
 export default async function handler(req, res) {
 	let location = req.query.location;
-	location = location.replace(' ', '%20');
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '75f0385fabmshd260d8bd0f85097p170a3ejsn534093935ab0',
+			'X-RapidAPI-Key': process.env.RAPID_API_KEY,
 			'X-RapidAPI-Host': 'forward-reverse-geocoding.p.rapidapi.com',
 		},
 	};
@@ -21,7 +18,7 @@ export default async function handler(req, res) {
 		const options = {
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': '75f0385fabmshd260d8bd0f85097p170a3ejsn534093935ab0',
+				'X-RapidAPI-Key': process.env.RAPID_API_KEY,
 				'X-RapidAPI-Host': 'stormglass.p.rapidapi.com',
 			},
 		};
