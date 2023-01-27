@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 export default async function handler(req, res) {
 	let location = req.query.location;
 	location = location.replace(' ', '%20');
