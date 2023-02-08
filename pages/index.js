@@ -26,9 +26,9 @@ const Home = () => {
 	}
 
 	return (
-		<div className="bg-neutral-200 h-screen overflow-hidden">
+		<div className="h-screen flex flex-col justify-between">
 			<nav className="py-4 px-8">
-				<div className="flex justify-between items-center h-full">
+				<div className="flex justify-between items-start h-full">
 					<Link className="flex items-center" href="/">
 						<Image src="/logo.png" alt="Logo" width={32} height={20} />
 						<div className="text-2xl font-bold">WaveWatch</div>
@@ -45,6 +45,11 @@ const Home = () => {
 								type="text"
 								className="bg-transparent outline-none"
 								onChange={(e) => setLocation(e.target.value)}
+								onKeyDown={(e) => {
+									if (e.key === 'Enter') {
+										getReport();
+									}
+								}}
 							/>
 							<button onClick={getReport} className="text-neutral-500">
 								<svg
@@ -119,6 +124,21 @@ const Home = () => {
 					<TwelveHourChart twelveHour={twelveHour} />
 				</div>
 			)}
+			<footer className="flex justify-between items-center px-10 py-4 bg-teal-100">
+				<div className="flex flex-col items-center">
+					<Link className="flex items-center" href="/">
+						<Image src="/logo.png" alt="Logo" width={50} height={50} />
+						<div className="text-4xl font-bold">WaveWatch</div>
+					</Link>
+					<p>© 2023. All rights reserved.</p>
+				</div>
+				<div>
+					Created by{' '}
+					<a className="text-teal-500" href="/">
+						Cade Pope
+					</a>
+				</div>
+			</footer>
 		</div>
 	);
 };
