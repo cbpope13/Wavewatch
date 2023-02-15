@@ -3,13 +3,15 @@ import TwelveHourChart from '../components/12HourChart';
 import Image from 'next/image';
 import Link from 'next/link';
 
+//https://wavewatch.vercel.app/api/report?location=${location}
+
 const Home = () => {
 	const [report, setReport] = useState(null);
 	const [err, setErr] = useState(null);
 	const [location, setLocation] = useState('');
 
 	const getReport = () => {
-		fetch(`https://wavewatch.vercel.app/api/report?location=${location}`)
+		fetch(`http://localhost:3000/api/report?location=${location}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setReport(data);
@@ -27,23 +29,23 @@ const Home = () => {
 
 	return (
 		<div className="h-screen flex flex-col justify-between">
-			<nav className="py-4 px-8">
-				<div className="flex justify-between items-start h-full">
+			<nav className="flex items-center px-4 py-2">
+				<div className="flex justify-between items-center w-full h-full">
 					<Link className="flex items-center" href="/">
 						<Image src="/logo.png" alt="Logo" width={32} height={20} />
-						<div className="text-2xl font-bold">WaveWatch</div>
+						<div className="text-xl md:text-2xl font-bold">WaveWatch</div>
 					</Link>
-					<div className="flex flex-col items-center">
+					<div className="flex w-1/2 justify-end relative">
 						<div
 							className={
 								err
-									? 'border border-red-600 rounded-full px-4 py-2'
-									: 'border border-neutral-400 rounded-full px-4 py-2'
+									? 'border border-red-600 rounded-full px-4 py-2 flex items-center md:w-1/2'
+									: 'border border-neutral-400 rounded-full px-4 py-2 flex items-center md:w-1/2'
 							}
 						>
 							<input
 								type="text"
-								className="bg-transparent outline-none"
+								className="bg-transparent outline-none w-full"
 								onChange={(e) => setLocation(e.target.value)}
 								onKeyDown={(e) => {
 									if (e.key === 'Enter') {
@@ -67,7 +69,7 @@ const Home = () => {
 							</button>
 						</div>
 						{err && (
-							<p className="text-red-600 text-xs font-semibold mt-2">
+							<p className="text-red-600 text-xs font-semibold mt-2 absolute -bottom-5 right-8">
 								Location not found
 							</p>
 						)}
@@ -75,8 +77,8 @@ const Home = () => {
 				</div>
 			</nav>
 			{!report && (
-				<div className="flex h-full text-center mt-56 flex-col space-y-4">
-					<h1 className="text-4xl font-bold">
+				<div className="flex h-full text-center justify-center flex-col space-y-4 px-4">
+					<h1 className="text-2xl md:text-3xl font-bold">
 						Welcome to <span className="text-teal-500">WaveWatch</span>
 					</h1>
 					<p>
@@ -86,31 +88,31 @@ const Home = () => {
 				</div>
 			)}
 			{report && (
-				<div className="mt-10 h-full">
-					<div className="px-20 flex flex-col space-y-8">
+				<div className="mt-20 h-full">
+					<div className="px-6 md:px-20 flex flex-col space-y-8">
 						<div className="text-3xl font-semibold">Current Conditions</div>
-						<div className="grid grid-cols-3 gap-4">
-							<div className="bg-neutral-50 shadow-md rounded-lg p-6">
+						<div className="grid grid-cols-3 gap-2 md:gap-4">
+							<div className="bg-neutral-50 flex flex-col justify-between shadow-md rounded-lg p-6">
 								<p className="text-xs font-semibold">Air Temp</p>
-								<div className="text-3xl font-bold">
+								<div className="text-2xl font-bold">
 									{Math.floor(
 										report.hours[0].airTemperature[0].value * 1.8 + 32
 									)}
 									<span className="text-base">°F</span>
 								</div>
 							</div>
-							<div className="bg-neutral-50 shadow-md rounded-lg p-6">
+							<div className="bg-neutral-50 flex flex-col justify-between shadow-md rounded-lg p-6">
 								<p className="text-xs font-semibold">Water Temp</p>
-								<div className="text-3xl font-bold">
+								<div className="text-2xl font-bold">
 									{Math.floor(
 										report.hours[0].waterTemperature[0].value * 1.8 + 32
 									)}
 									<span className="text-base">°F</span>
 								</div>
 							</div>
-							<div className="bg-neutral-50 shadow-md rounded-lg p-6">
+							<div className="bg-neutral-50 flex flex-col justify-between shadow-md rounded-lg p-6">
 								<p className="text-xs font-semibold">Wave Height</p>
-								<div className="text-3xl font-bold">
+								<div className="text-2xl font-bold">
 									{`${Math.floor(
 										report.hours[0].swellHeight[0].value * 3.28
 									)}-${Math.floor(
@@ -124,7 +126,7 @@ const Home = () => {
 					<TwelveHourChart twelveHour={twelveHour} />
 				</div>
 			)}
-			<footer className="flex justify-between items-center px-10 py-4 bg-teal-100">
+			<footer className="flex flex-col md:flex-row justify-between items-center px-10 py-2 bg-teal-100">
 				<div className="flex flex-col items-center">
 					<Link className="flex items-center" href="/">
 						<Image src="/logo.png" alt="Logo" width={50} height={50} />

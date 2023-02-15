@@ -11,7 +11,7 @@ const TwelveHourChart = ({ twelveHour }) => {
 	);
 
 	return (
-		<div className="px-20 h-80 mb-40">
+		<div className="px-8 md:px-20 md:h-80 h-60 mb-40">
 			<div>
 				<div className="text-2xl font-medium mt-10 mb-6">12-Hour Forecast</div>
 			</div>
