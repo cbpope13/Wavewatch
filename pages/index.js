@@ -3,15 +3,13 @@ import TwelveHourChart from '../components/12HourChart';
 import Image from 'next/image';
 import Link from 'next/link';
 
-//https://wavewatch.vercel.app/api/report?location=${location}
-
 const Home = () => {
 	const [report, setReport] = useState(null);
 	const [err, setErr] = useState(null);
 	const [location, setLocation] = useState('');
 
 	const getReport = () => {
-		fetch(`http://localhost:3000/api/report?location=${location}`)
+		fetch(`https://wavewatch.vercel.app/api/report?location=${location}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setReport(data);
